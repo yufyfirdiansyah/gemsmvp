@@ -17,7 +17,7 @@ creds, _ = default()
 gc = gspread.authorize(creds)
 
 # !!! REPLACE THIS URL WITH YOUR NEW GOOGLE SHEET URL !!!
-SHEET_URL = "https://docs.google.com/spreadsheets/d/1THtNx9WrDlhR2C3mQOrXXYdqW3bMpBowf2iQoWFi62M/edit"
+SHEET_URL = "https://docs.google.com/spreadsheets/d/1lYhYYOScrmacTDrWQ7p7yArcsLeMWV5P9F7X_sNAgB8/edit"
 worksheet = gc.open_by_url(SHEET_URL).worksheet("Data")
 
 def fetch_data(ticker_symbol, period="3mo"):
