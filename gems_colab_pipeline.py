@@ -34,6 +34,14 @@ def get_delta(df):
 
 print("Fetching GEMS and Macro data...")
 gems = fetch_data("GEMS.JK")
+
+# Clean GEMS data by removing trailing rows with 0 volume (incomplete/pre-market days)
+original_len = len(gems)
+while not gems.empty and (gems['Volume'].iloc[-1] == 0 or pd.isna(gems['Volume'].iloc[-1])):
+    gems = gems.iloc[:-1]
+if len(gems) < original_len:
+    print(f"⚠️ Dropped {original_len - len(gems)} trailing row(s) with 0 volume. Using last active trading day's data.")
+
 fxi = fetch_data("FXI")
 ng = fetch_data("NG=F")
 usdidr = fetch_data("USDIDR=X")
